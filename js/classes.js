@@ -4,6 +4,7 @@ class PlacementTile {
         this.position = position
         this.size = 64
         this.color = 'rgba(255, 255, 255, 0.15)'
+        this.occupied = false
     }
     draw() {
         c.fillStyle = this.color
@@ -16,7 +17,6 @@ class PlacementTile {
         if (mouse.x > this.position.x && mouse.x < this.position.x + this.size && 
             mouse.y > this.position.y && mouse.y < this.position.y + this.size) {
 
-            console.log('colliding')
             this.color = 'white';
         } else this.color = 'rgba(255, 255, 255, 0.15)'
     }
@@ -69,10 +69,11 @@ class Enemy {
 class Building {
     constructor({position = { x: 0, y: 0 } }) {
         this.position = position
+        this.width = 64 * 2
     }
 
     draw() {
         c.fillStyle = 'blue';
-        c.fillRect(this.position.x, this.position.y, 64, 64)
+        c.fillRect(this.position.x, this.position.y, this.width, 64)
     }
 }

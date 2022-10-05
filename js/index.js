@@ -83,13 +83,14 @@ const mouse = {
 }
 
 canvas.addEventListener('click', (event) => {
-    if (activeTile) {
+    if (activeTile && !activeTile.isOccupied) {
         buildings.push(new Building({
             position: {
                 x: activeTile.position.x,
                 y: activeTile.position.y,
             }
         }))
+        activeTile.isOccupied = true;
     }
 })
 
