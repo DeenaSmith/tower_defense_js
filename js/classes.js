@@ -77,3 +77,20 @@ class Building {
         c.fillRect(this.position.x, this.position.y, this.width, 64)
     }
 }
+
+
+class Projectile {
+    constructor({ position = {x: 0, y: 0} }) {
+        this.position = position
+        this.velocity - {
+            x: 0,
+            y: 0
+        }
+    }
+    draw() {
+        c.beginPath();
+        c.arc(this.position.x, this.position.y, 10, 0, Math.PI * 2);
+        c.fillStyle = 'orange';
+        c.fill();
+    }
+}
