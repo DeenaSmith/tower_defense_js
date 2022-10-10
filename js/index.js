@@ -64,7 +64,7 @@ function animate() {
 
     c.drawImage(image, 0, 0);
 
-    enemies.forEach(enemy => {
+    enemies.forEach((enemy) => {
         enemy.update()
     })
 
@@ -72,11 +72,11 @@ function animate() {
         tile.update(mouse)
     })
 
-    buildings.forEach(building => {
+    buildings.forEach((building) => {
         building.draw()
 
         building.projectiles.forEach((projectile) => {
-            projectile.draw()
+            projectile.update()
         })
     })
 };
