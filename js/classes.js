@@ -33,11 +33,15 @@ class Enemy {
             x: this.position.x + this.width / 2,
             y: this.position.y + this.height / 2
         }
+        this.radius = 50
     }
 // how the enemy looks
     draw() {
         c.fillStyle = 'red';
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        //c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        c.beginPath();
+        c.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2);
+        c.fill();
     }
 // enemy movement along waypoints
     update() {
@@ -67,23 +71,23 @@ class Enemy {
 
 
 class Projectile {
-    constructor({ position = {x: 0, y: 0} }) {
+    constructor({ position = {x: 0, y: 0} , enemy }) {
         this.position = position
         this.velocity = {
             x: 0,
             y: 0
         }
+        this.enemy = enemy
+        this.radius = 10
     }
     draw() {
         c.beginPath();
-        c.arc(this.position.x, this.position.y, 10, 0, Math.PI * 2);
+        c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
         c.fillStyle = 'orange';
         c.fill();
     }
 
     update() {
-        console.log("")
-        console.log('entered update')
         this.draw()
 
         const angle = Math.atan2(
@@ -109,12 +113,14 @@ class Building {
             x: this.position.x + this.width / 2,
             y: this.position.y + this.height / 2
         }
+
         this.projectiles = [
             new Projectile({
                 position: {
                     x: this.center.x,
                     y: this.center.y
-                }
+                },
+                enemy: enemies[0]
             })
         ]
     }
